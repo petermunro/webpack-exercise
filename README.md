@@ -28,14 +28,14 @@ place them in a config file.
 
 1. Create the file, `webpack.config.js` with the contents:
 
-```
-module.exports = {
-	entry: /* TODO: path to app.js, starting with './' */ 
-	output: {
-		filename: /* TODO: destination for generated bundle */
+	```
+	module.exports = {
+		entry: /* TODO: path to app.js, starting with './' */ 
+		output: {
+			filename: /* TODO: destination for generated bundle */
+		}
 	}
-}
-```
+	```
 
 1. Run webpack, this time with no arguments, and check that it has
 created the output bundle for you.
@@ -89,6 +89,38 @@ simply add it to your `webpack.config.js` file:
 
 We've used jQuery purely for example. (jQuery does also test to see
 whether it's being `require()`ed, so you can use it in that form too.)
+
+
+## An Alternate way to load jQuery
+
+Instead of loading jQuery ourselves, we can have Webpack do it.
+
+1. Install jQuery locally using `npm`. Modify your `webpack.config.js`:
+
+	```
+	var webpack = require('webpack');
+	
+	module.exports = {
+	
+		// ...
+	    plugins: [
+	        new webpack.ProvidePlugin({
+	            $: "jquery",
+	            jQuery: "jquery"
+	        })
+	
+	    ]
+	    
+	    // ...
+	}
+    ```
+    
+	This makes the `$` and `jQuery` values available globally, so they're
+	accessible within any module without having to do a `require()` within
+	each one.
+
+2. Test, and ensure that this places the jQuery source code into your `built/bundle.js`.
+
 
 ## Using a Loader
 
@@ -257,46 +289,46 @@ The `style-loader` inject a `<style>` element and load the retrieved CSS into it
 
 1. Install the loaders:
 
-```
-npm install style-loader css-loader --save-dev
-```
+	```
+	npm install style-loader css-loader --save-dev
+	```
 
 2. Create a simple configuration:
 
-```
-require("style!css!./mystyles.css")
-```
-
-This means "load ./mystyles.css, then call css-loader on that, then call style-loader on that".
+	```
+	require("style!css!./mystyles.css")
+	```
+	
+	This means "load ./mystyles.css, then call css-loader on that, then call style-loader on that".
 
 3. Configure Webpack:
 
-```
-module.exports = {
-
-  // ...
-  
-  module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      }
-    ]
-  }
-};
-```
+	```
+	module.exports = {
+	
+	  // ...
+	  
+	  module: {
+	    loaders: [
+	      {
+	        test: /\.css$/,
+	        loader: 'style-loader!css-loader'
+	      }
+	    ]
+	  }
+	};
+	```
 
 ## Using Sass from Webpack
 
 1. To use Sass, install and configure the `sass-loader`:
 
-```
-{
-	test: /\.sass$/,
-	loader: 'style-loader!css-loader!sass-loader'
-}
-```
+	```
+	{
+		test: /\.sass$/,
+		loader: 'style-loader!css-loader!sass-loader'
+	}
+	```
 
 2. Now ensure that Sass files are compiled accordingly.
 

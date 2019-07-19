@@ -1,5 +1,2 @@
-
-
-var msg = document.getElementById('message');
-msg.innerHTML = "Welcome to Webpack!";
-
+let message = document.getElementById("message");
+message.innerHTML = "Welcome to Webpack!";

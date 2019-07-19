@@ -1,0 +1,8 @@
+{
+  "name": "01-simple",
+  "description": "A simple project to illustrate webpack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Peter Munro <peter@petermunro.org>",
+  "license": "MIT"
+}

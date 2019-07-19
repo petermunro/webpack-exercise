@@ -1,2 +1,3 @@
+import embeddedContent from "./view2";
 
-$(document.body).append('<p>foo</p>');
+export let aSecondMessage = `<p>The second message contains: ${embeddedContent}</p>`;

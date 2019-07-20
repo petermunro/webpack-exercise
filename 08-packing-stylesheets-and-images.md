@@ -1,16 +1,9 @@
 ## Packing Stylesheets and Images
 
-To pack stylesheets and images, we `import` them:
+To pack stylesheets and images, we `import` them, just as we do with JavaScript
+modules.
 
-```
-import './bootstrap.css';
-import './myapp.less';
-
-let img = document.createElement('img');
-img.src = require('./glyph.png');
-```
-
-To do this, we bundle everything up into a JS file!
+To do this, we have webpack bundle everything up into a JS file!
 
 The `css-loader` takes the CSS as a string, and "inlines" it as a JS string
 inside the JS bundle, having first retrieved any `@import`s, `url()`s or images
@@ -31,7 +24,7 @@ To do this, once the app loads in the browser, the `style-loader` injects a
 
 2. Configure Webpack:
 
-  ```
+    ```
     // ...
     module: {
       rules: [
@@ -43,16 +36,13 @@ To do this, once the app loads in the browser, the `style-loader` injects a
           ]
         }
       ]
-	  }
-	};
-	```
+    }
+    ```
 
 3. Restart webpack-dev-server.
 
-4. Import the CSS file into a JS file:
+4. Import the CSS file into a JS file (for example, `app.js`):
 
-	```
-	import "../css/styles.css";
-	```
+        import "../css/styles.css";
 
   Check that the page renders with a background color.

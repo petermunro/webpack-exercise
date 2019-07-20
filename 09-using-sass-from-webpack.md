@@ -17,6 +17,4 @@
 
 3. And now test it to ensure that Sass files are compiled properly:
 
-	```
-  import "../css/morestyles.scss";
-  ```
+        import "../css/morestyles.scss";
